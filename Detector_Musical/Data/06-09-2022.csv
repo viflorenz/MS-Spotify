@@ -1,0 +1,163 @@
+,Country,feature_index,value
+0,Chile,weighted_sum_energy,0.7113635751763759
+1,Argentina,weighted_sum_energy,0.6726482861335497
+2,Bolivia,weighted_sum_energy,0.6843340543980923
+3,Paraguay,weighted_sum_energy,0.6778927066350587
+4,Brazil,weighted_sum_energy,0.7050179250399188
+5,Peru,weighted_sum_energy,0.6844891417206681
+6,Ecuador,weighted_sum_energy,0.6659641707938757
+7,Uruguay,weighted_sum_energy,0.68640526995096
+8,Costa Rica,weighted_sum_energy,0.671998637696656
+9,El Salvador,weighted_sum_energy,0.6762053178049688
+10,Guatemala,weighted_sum_energy,0.6696223756578246
+11,Honduras,weighted_sum_energy,0.6744596862772692
+12,Nicaragua,weighted_sum_energy,0.6785195418057182
+13,Panama,weighted_sum_energy,0.6855098992279464
+14,Mexico,weighted_sum_energy,0.6502846185484009
+15,Dominican Republic,weighted_sum_energy,0.7201190519145919
+16,Canada,weighted_sum_energy,0.6736984393987072
+17,USA,weighted_sum_energy,0.6594708323233247
+18,Chile,weighted_sum_liveness,0.1768745572773828
+19,Argentina,weighted_sum_liveness,0.1652864997674718
+20,Bolivia,weighted_sum_liveness,0.1780663824033343
+21,Paraguay,weighted_sum_liveness,0.1750645529773603
+22,Brazil,weighted_sum_liveness,0.3522404874032647
+23,Peru,weighted_sum_liveness,0.1739999867843475
+24,Ecuador,weighted_sum_liveness,0.1793444267292182
+25,Uruguay,weighted_sum_liveness,0.1509891990870362
+26,Costa Rica,weighted_sum_liveness,0.1906735754534859
+27,El Salvador,weighted_sum_liveness,0.1758861508049427
+28,Guatemala,weighted_sum_liveness,0.1729727666481837
+29,Honduras,weighted_sum_liveness,0.1879677152104318
+30,Nicaragua,weighted_sum_liveness,0.1840460975917741
+31,Panama,weighted_sum_liveness,0.1747175960362173
+32,Mexico,weighted_sum_liveness,0.174367825015653
+33,Dominican Republic,weighted_sum_liveness,0.170822491944724
+34,Canada,weighted_sum_liveness,0.197523320544165
+35,USA,weighted_sum_liveness,0.1999120641343783
+36,Chile,weighted_sum_danceability,0.7890734464892908
+37,Argentina,weighted_sum_danceability,0.7656028056062728
+38,Bolivia,weighted_sum_danceability,0.7544949042071508
+39,Paraguay,weighted_sum_danceability,0.7639677130242434
+40,Brazil,weighted_sum_danceability,0.6990817409092506
+41,Peru,weighted_sum_danceability,0.7599441419251364
+42,Ecuador,weighted_sum_danceability,0.7644122689875806
+43,Uruguay,weighted_sum_danceability,0.7702005803758786
+44,Costa Rica,weighted_sum_danceability,0.7561646351420576
+45,El Salvador,weighted_sum_danceability,0.7610568058253361
+46,Guatemala,weighted_sum_danceability,0.757680807981929
+47,Honduras,weighted_sum_danceability,0.7589399857718574
+48,Nicaragua,weighted_sum_danceability,0.7615910309371334
+49,Panama,weighted_sum_danceability,0.7520696812362683
+50,Mexico,weighted_sum_danceability,0.7470987657318825
+51,Dominican Republic,weighted_sum_danceability,0.7674421729304743
+52,Canada,weighted_sum_danceability,0.6849864856817798
+53,USA,weighted_sum_danceability,0.656161220524638
+54,Chile,weighted_sum_acousticness,0.1786690499474008
+55,Argentina,weighted_sum_acousticness,0.2225807918595004
+56,Bolivia,weighted_sum_acousticness,0.1944949187224397
+57,Paraguay,weighted_sum_acousticness,0.2050723752787006
+58,Brazil,weighted_sum_acousticness,0.3887485130228073
+59,Peru,weighted_sum_acousticness,0.201948500277778
+60,Ecuador,weighted_sum_acousticness,0.2090605052516677
+61,Uruguay,weighted_sum_acousticness,0.2084105846014982
+62,Costa Rica,weighted_sum_acousticness,0.2040160167614761
+63,El Salvador,weighted_sum_acousticness,0.2131927005964729
+64,Guatemala,weighted_sum_acousticness,0.2229592027725685
+65,Honduras,weighted_sum_acousticness,0.2190219183758027
+66,Nicaragua,weighted_sum_acousticness,0.2109287691891404
+67,Panama,weighted_sum_acousticness,0.2200483840057608
+68,Mexico,weighted_sum_acousticness,0.2521978246246847
+69,Dominican Republic,weighted_sum_acousticness,0.1861290528483075
+70,Canada,weighted_sum_acousticness,0.2317308058480791
+71,USA,weighted_sum_acousticness,0.2401264637658029
+72,Chile,weighted_sum_speechiness,0.1071634426840979
+73,Argentina,weighted_sum_speechiness,0.1154636402954685
+74,Bolivia,weighted_sum_speechiness,0.1206610755278408
+75,Paraguay,weighted_sum_speechiness,0.1220271917548667
+76,Brazil,weighted_sum_speechiness,0.1374938571229937
+77,Peru,weighted_sum_speechiness,0.111044447505932
+78,Ecuador,weighted_sum_speechiness,0.1140664799600536
+79,Uruguay,weighted_sum_speechiness,0.1142080160286077
+80,Costa Rica,weighted_sum_speechiness,0.1068490147347982
+81,El Salvador,weighted_sum_speechiness,0.1069123463968998
+82,Guatemala,weighted_sum_speechiness,0.1060782699472801
+83,Honduras,weighted_sum_speechiness,0.1097527742924039
+84,Nicaragua,weighted_sum_speechiness,0.1064727948047262
+85,Panama,weighted_sum_speechiness,0.1236477705768514
+86,Mexico,weighted_sum_speechiness,0.1005982698224799
+87,Dominican Republic,weighted_sum_speechiness,0.1294317400029119
+88,Canada,weighted_sum_speechiness,0.0922538092517731
+89,USA,weighted_sum_speechiness,0.1015496419824976
+90,Chile,weighted_sum_valence,0.5817082515703116
+91,Argentina,weighted_sum_valence,0.5724750197702596
+92,Bolivia,weighted_sum_valence,0.5310670778212834
+93,Paraguay,weighted_sum_valence,0.5121043869466747
+94,Brazil,weighted_sum_valence,0.6712284621769334
+95,Peru,weighted_sum_valence,0.5242076819845224
+96,Ecuador,weighted_sum_valence,0.5166744070463504
+97,Uruguay,weighted_sum_valence,0.5862844919770724
+98,Costa Rica,weighted_sum_valence,0.5171401248666219
+99,El Salvador,weighted_sum_valence,0.4933841950503339
+100,Guatemala,weighted_sum_valence,0.5177404478403504
+101,Honduras,weighted_sum_valence,0.4937248789239772
+102,Nicaragua,weighted_sum_valence,0.4998910363488772
+103,Panama,weighted_sum_valence,0.5212874519767771
+104,Mexico,weighted_sum_valence,0.5517051124939837
+105,Dominican Republic,weighted_sum_valence,0.6060742414747009
+106,Canada,weighted_sum_valence,0.5534547938805644
+107,USA,weighted_sum_valence,0.4781154070282041
+108,Chile,weighted_sum_tempo,111.76261312881554
+109,Argentina,weighted_sum_tempo,109.82848673201
+110,Bolivia,weighted_sum_tempo,118.3156562132418
+111,Paraguay,weighted_sum_tempo,118.77358735646364
+112,Brazil,weighted_sum_tempo,131.376784300371
+113,Peru,weighted_sum_tempo,117.52790544200624
+114,Ecuador,weighted_sum_tempo,121.58374767492496
+115,Uruguay,weighted_sum_tempo,110.9999763120979
+116,Costa Rica,weighted_sum_tempo,120.72234208465966
+117,El Salvador,weighted_sum_tempo,119.30888496968146
+118,Guatemala,weighted_sum_tempo,118.99016476842628
+119,Honduras,weighted_sum_tempo,119.19781756511132
+120,Nicaragua,weighted_sum_tempo,118.49329552809598
+121,Panama,weighted_sum_tempo,123.06631942040724
+122,Mexico,weighted_sum_tempo,118.26362912486849
+123,Dominican Republic,weighted_sum_tempo,119.18418949680644
+124,Canada,weighted_sum_tempo,128.2814583096512
+125,USA,weighted_sum_tempo,128.7914494024466
+126,Chile,weighted_sum_mode,0.5017583774356966
+127,Argentina,weighted_sum_mode,0.4689627076106903
+128,Bolivia,weighted_sum_mode,0.4063032070597208
+129,Paraguay,weighted_sum_mode,0.4014558529341782
+130,Brazil,weighted_sum_mode,0.5105317049300747
+131,Peru,weighted_sum_mode,0.429046159032674
+132,Ecuador,weighted_sum_mode,0.4087754237042111
+133,Uruguay,weighted_sum_mode,0.4402347949568527
+134,Costa Rica,weighted_sum_mode,0.4261291570943792
+135,El Salvador,weighted_sum_mode,0.4029236654968155
+136,Guatemala,weighted_sum_mode,0.4681270613066715
+137,Honduras,weighted_sum_mode,0.4148910804398216
+138,Nicaragua,weighted_sum_mode,0.4302696852169207
+139,Panama,weighted_sum_mode,0.497129858068106
+140,Mexico,weighted_sum_mode,0.4955002733105049
+141,Dominican Republic,weighted_sum_mode,0.4600290559659684
+142,Canada,weighted_sum_mode,0.6225741327975598
+143,USA,weighted_sum_mode,0.5930152297697027
+144,Chile,weighted_sum_loudness,0.5017583774356966
+145,Argentina,weighted_sum_loudness,0.4689627076106903
+146,Bolivia,weighted_sum_loudness,0.4063032070597208
+147,Paraguay,weighted_sum_loudness,0.4014558529341782
+148,Brazil,weighted_sum_loudness,0.5105317049300747
+149,Peru,weighted_sum_loudness,0.429046159032674
+150,Ecuador,weighted_sum_loudness,0.4087754237042111
+151,Uruguay,weighted_sum_loudness,0.4402347949568527
+152,Costa Rica,weighted_sum_loudness,0.4261291570943792
+153,El Salvador,weighted_sum_loudness,0.4029236654968155
+154,Guatemala,weighted_sum_loudness,0.4681270613066715
+155,Honduras,weighted_sum_loudness,0.4148910804398216
+156,Nicaragua,weighted_sum_loudness,0.4302696852169207
+157,Panama,weighted_sum_loudness,0.497129858068106
+158,Mexico,weighted_sum_loudness,0.4955002733105049
+159,Dominican Republic,weighted_sum_loudness,0.4600290559659684
+160,Canada,weighted_sum_loudness,0.6225741327975598
+161,USA,weighted_sum_loudness,0.5930152297697027

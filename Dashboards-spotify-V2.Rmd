@@ -1,0 +1,77 @@
+---
+title: "Dashborads-spotify-V2"
+output: 
+  flexdashboard::flex_dashboard
+---
+# Mundo musical
+Visualización de datos desde la API de Spotify. 
+
+```{r Tabla documentación, echo = FALSE}
+library(readxl)
+tabla <- read_xlsx("Audio Features Spotify.xlsx")
+knitr::kable(tabla,
+caption = "Tabla Características de Audio")
+```
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(ggcharts)
+      
+bbdd <- read.csv("06-09-2022.csv")
+bbdd <- bbdd |> 
+  select (-X) |> 
+  rename(Pais = Country) |> 
+  rename(Variables = feature_index) |> 
+  rename(Frecuencia = value)
+bbdd$Frecuencia <- round(bbdd$Frecuencia, digits = 2)
+data <- spread(bbdd, key = Variables, value = Frecuencia)
+data <- data |> 
+  select(-weighted_sum_tempo) |> 
+  rename(Acústica = weighted_sum_acousticness) |> 
+  rename(Bailabilidad = weighted_sum_danceability) |> 
+  rename(Energía = weighted_sum_energy) |> 
+  rename('En vivo' = weighted_sum_liveness) |> 
+  rename(Ruidosidad = weighted_sum_loudness) |> 
+  rename(Modalidad = weighted_sum_mode) |> 
+  rename(Habla = weighted_sum_speechiness) |> 
+  rename(Positividad = weighted_sum_valence)
+```
+
+### Gráfico de barras - Todos los países
+
+```{r Barplot}
+data %>% 
+  ggplot(aes(reorder(Pais,Energía),Energía))+
+  geom_bar(stat = "identity", width = 0.8, fill = "#69b3a2")+
+  labs(x="Pais")+
+  coord_flip()
+```
+
+
+### Diverging Lollipop Chart - Todos los países
+
+```{r Diverging Lollipop Chart}
+ggplot(data, aes(x=Pais, y=Energía, label=Energía)) + 
+  geom_point(stat='identity', colour  = "#69b3a2", size=6)  +
+  geom_segment(aes(y = 0, 
+                   x = Pais, 
+                   yend = Energía, 
+                   xend = Pais), 
+               color = "#69b3a2") +
+  geom_text(color="black", size=2) +
+  ylim(0, 1) +
+  coord_flip()
+```
+
+### Pirámide - Dos países
+
+```{r Pyramid}
+data_piramide <- data |> 
+  filter(Pais == "Chile" | Pais == "Argentina") |> 
+  gather(key = "Variables", value = "Frecuencia", 2:9)
+pyramid_chart(data = data_piramide, x = Variables, y = Frecuencia, group = Pais)
+
+```
+
