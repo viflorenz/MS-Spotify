@@ -2,7 +2,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
       
-
+###DATOS
 bbdd <- read.csv("06-09-2022.csv")
 bbdd <- bbdd |> 
   select (-X) |> 
@@ -29,8 +29,9 @@ data <- data |>
   rename(Positividad = weighted_sum_valence)
 #ó
 #data <- pivot_wider(bbdd, names_from = Variables, values_from = Frecuencia)
-
 ###
+
+###VARIABLES  
 #bbdd$weighted_sum_energy
 #bbdd$weighted_sum_danceability
 #bbdd$weighted_sum_liveness
@@ -41,6 +42,8 @@ data <- data |>
 #data$weighted_sum_mode
 #data$weighted_sum_valence
 ###
+
+###PALETA DE COLORES
 #library(wesanderson)
 #pal <- wes_palette(21, name = "GrandBudapest1", type = "continuous")
 #print(as.character(pal))
@@ -50,12 +53,15 @@ data <- data |>
 #todos los paises
 ggplot(data, aes(x=Pais, y=Energía)) + 
   geom_bar(stat = "identity", width = 0.8, fill = "#69b3a2")+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.02))  +
   coord_flip()
+
 #orden por f(); todos los paises
 data %>% 
   ggplot(aes(reorder(Pais,Energía),Energía))+
   geom_bar(stat = "identity", width = 0.8, fill = "#69b3a2")+
   labs(x="Pais")+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.02)) +
   coord_flip()
 
 ##Diverging Lollipop Chart
@@ -68,7 +74,7 @@ ggplot(data, aes(x=Pais, y=Energía, label=Energía)) +
                    xend = Pais), 
                color = "#69b3a2") +
   geom_text(color="black", size=2) +
-  ylim(0, 1) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1.02)) +
   coord_flip()
 
 ##Pyramid; no ggplot
@@ -80,74 +86,36 @@ data_piramide <- data |>
   gather(key = "Variables", value = "Frecuencia", 2:9)
 pyramid_chart(data = data_piramide, x = Variables, y = Frecuencia, group = Pais)
 
-#Bar plot 3 países; ggplot
-bbdd_bp <- data |> 
-  gather(key = "Variables", value = "Frecuencia", 2:9) |> 
-  filter(Pais == "Chile" | Pais == "Argentina" | Pais == "Bolivia") 
-my_bar <- barplot(bbdd_bp$Frecuencia , border=F , names.arg=bbdd_bp$Variable , 
-                  las=2 , 
-                  col=c(rgb(0.3,0.1,0.4,0.6) , rgb(0.3,0.5,0.4,0.6) , rgb(0.3,0.9,0.4,0.6) ,  rgb(0.3,0.9,0.4,0.6)) , 
-                  ylim=c(0,1) , 
-                  main="" )
-# Add abline
-abline(v=c(4.9 , 9.7) , col="grey")
 
-# Add the text 
-#Legende
-legend("topleft", legend = c("Alone","with Himself","With other genotype" ) , 
-       col = c(rgb(0.3,0.1,0.4,0.6) , rgb(0.3,0.5,0.4,0.6) , rgb(0.3,0.9,0.4,0.6) ,  rgb(0.3,0.9,0.4,0.6)) , 
-       bty = "n", pch=20 , pt.cex = 2, cex = 0.8, horiz = FALSE, inset = c(0.05, 0.05))
+##Coropletico con leaflet
+#Desde:
+#https://learn.r-journalism.com/en/mapping/census_maps/census-maps/
+#para cambiar el tipo de mapa https://leaflet-extras.github.io/leaflet-providers/preview/
+#install.packages("tigris")
+library(geojsonio)
+library(tigris)
+library(leaflet)
 
+spdf <- geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
+spdf@data$name[spdf@data$name == "United States of America"] <- "USA"
+spdf_junto <- tigris::geo_join(spdf, data, "name", "Pais")
+pal <- colorNumeric("Greens", domain=spdf_junto$Acústica)
+popup <- paste0("<strong>País: </strong>",as.character(spdf_junto$name),
+                "<br>",
+                "<strong>Acústica: </strong>", as.character(spdf_junto$Acústica))
+#spdf_junto <- subset(spdf_junto, !is.na(variable))#si se quiere sacar los nas
 
-#de acá abajo necesitan areglo
-##Pyramid; ggplot
-ggplot(data_piramide) +
-  geom_bar(data=data_piramide, aes(x = Variables, y = Frecuencia, fill = Pais), stat="identity") +
- # geom_bar(data=data, aes(x = Variables, y=-Frecuencia, fill = Pais), stat="identity") +
-  geom_hline(yintercept=0, colour="white", lwd=1) +
-  coord_flip(ylim=c(-1,1)) + 
-  scale_y_continuous(breaks=seq(-1,1,0.5), labels=c(1,0.5,0,0.5,1)) +
-  ggtitle("Comparación países")
-
-##Pyramid; otro ggplot
-library(ggthemes)
-options(scipen = 999) 
-# X Axis Breaks and Labels 
-brks <- seq(-15000000, 15000000, 5000000)
-lbls = paste0(as.character(c(seq(15, 0, -5), seq(5, 15, 5))), "m")
-
-# Plot
-ggplot(data_piramide, aes(x = Variables, y = Frecuencia, fill = Pais)) +   # Fill column
-  geom_bar(stat = "identity", width = .6) +   # draw the bars
-  scale_y_continuous(breaks = brks,   # Breaks
-                     labels = lbls) + # Labels
-  geom_hline(yintercept=0, colour="white", lwd=1)+
-  coord_flip() +  # Flip axes
-  labs(title="Comparación países") +
-  theme_tufte() +  # Tufte theme from ggfortify
-  theme(plot.title = element_text(hjust = .5), 
-        axis.ticks = element_blank()) +   # Centre plot title
-  scale_fill_brewer(palette = "Dark2")  # Color palette
-
-#Mezcla de grafs
-brks <- seq(-1, 1, 0.5)
-lbls = paste0(as.character(c(seq(1, 0, -0.5), seq(0.5, 1, 0.5))))
-
-ggplot(data_piramide, aes(x = Variables, y = Frecuencia, fill = Pais)) + 
-  geom_bar(stat = "identity", width = .6) +
-  scale_y_continuous(breaks = brks,   # Breaks
-                     labels = lbls) + # Labels
-  geom_hline(yintercept=0, colour="white", lwd=1)+
-  coord_flip(ylim=c(-1,1)) + 
-  labs(title="Comparación países") +
-  theme_tufte() +  # Tufte theme from ggfortify
-  theme(plot.title = element_text(hjust = .5), 
-        axis.ticks = element_blank()) +   # Centre plot title
-  scale_fill_brewer(palette = "Dark2")  # Color palette
-install.packages("ggpol")
-library(ggpol)
-ggplot(data, aes(x = Variables, y = Frecuencia, fill = Pais)) +
-  geom_bar(stat = "identity") + 
-  facet_share(~Pais, dir = "h", scales = "free", reverse_num = TRUE) +
-  coord_flip() +
-  theme_minimal()
+leaflet() %>%
+  addProviderTiles(provider = "CartoDB.Positron",
+                   options = providerTileOptions(minZoom = 1, maxZoom = 5.5)) |> 
+  setView(lng = -63.5494, lat = -16.2837, zoom = 2) |> 
+  addPolygons(data = spdf_junto , 
+              fillColor = ~pal(spdf_junto$Acústica), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2, 
+              popup = ~popup) |> 
+  addLegend(pal = pal, 
+            values = spdf_junto$Acústica, 
+            position = "bottomright", 
+            title = "Acústica")
