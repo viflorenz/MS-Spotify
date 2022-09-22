@@ -122,6 +122,11 @@ ui <- fluidPage(
     #4----------------------
     tabPanel(
       "Características de audio",
+      p("Información rescatada desde la",
+        a("documentación oficial de Spotify",
+          href = "https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features",
+          target="_blank", rel="noopener noreferrer"),
+        ("para desarrolladores.")),
       tableOutput("tabla"))
   ))
 #----------------------
