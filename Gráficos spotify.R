@@ -119,3 +119,59 @@ leaflet() %>%
             values = spdf_junto$Acústica, 
             position = "bottomright", 
             title = "Acústica")
+
+##Radar: 1 país, todas las variables
+#install.packages("fmsb")
+library(fmsb)
+pais1 <- data |> 
+  slice(1)  #shiny
+#  select(-Pais)
+pais1 <- rbind(rep(1, 9), rep(0,9), pais1)
+
+radarchart(pais1[,-1])
+
+
+#desde https://r-graph-gallery.com/142-basic-radar-chart.html
+radarchart(pais1[,-1], 
+           title = "Características de audio de Argentina", #shiny
+           axistype=1, 
+           pcol=rgb(0.45,0.17,0.18,0.9), #linea
+           pfcol=rgb(0.86,0.33,0.34,0.7) , plwd=2.5 , #relleno
+           cglcol="grey", cglty=1, axislabcol="grey", 
+           caxislabels=seq(0.00,0.99, 5), cglwd=0.8,
+           vlcex=0.8 
+)
+
+##Radar: tres países, todas las variables
+library(fmsb)
+pais2 <- data |> 
+  slice(1:3)   #shiny
+ # select(-Pais)
+pais2 <- rbind(rep(1, 9), rep(0,9), pais2)
+
+#radarchart(pais2[,-1])
+
+#https://r-graph-gallery.com/143-spider-chart-with-saveral-individuals.html
+#sin rango min-max
+
+#colores para tres categorías/países
+colors_border=c( rgb(0.2,0.5,0.5,0.9), rgb(0.8,0.2,0.5,0.9) , rgb(0.7,0.5,0.1,0.9) )
+colors_in=c( rgb(0.2,0.5,0.5,0.4), rgb(0.8,0.2,0.5,0.4) , rgb(0.7,0.5,0.1,0.4) )
+
+radarchart(pais2[,-1], 
+           title = "Características de audio de Argentina, Bolivia, y Brazil",
+           axistype=1 , 
+            pcol=colors_border, #linea
+            pfcol=colors_in, plwd=2.5 , plty=1, #relleno
+            cglcol="grey", cglty=1, axislabcol="grey", caxislabels=seq(0.00,0.99, 5), cglwd=0.8,
+            #custom labels
+            vlcex=0.8 
+)
+
+#leyenda
+legend(x=1.2, y=1.3, legend = pais2[-c(1,2),]$Pais, 
+       bty = "n",
+       pch=20, 
+       col=colors_in , text.col = "grey", 
+       cex=1, pt.cex=3,
+       y.intersp=0.58)
