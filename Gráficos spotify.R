@@ -175,42 +175,6 @@ legend(x=1.2, y=1.3, legend = pais2[-c(1,2),]$Pais,
        col=colors_in , text.col = "grey", 
        cex=1, pt.cex=3,
        y.intersp=0.58)
-#####################
-hike_data <- readr::read_rds("hike_data.rds")
-hike_data$region <- as.factor(word(hike_data$location, 1, sep = " -- "))
-hike_data$length_num <- as.numeric(sapply(strsplit(hike_data$length, " "), "[[", 1))
-plot_df <- hike_data %>%
-  group_by(region) %>%
-  summarise(
-    sum_length = sum(length_num),
-    mean_gain = mean(as.numeric(gain)),
-    n = n()
-  ) %>%
-  mutate(mean_gain = round(mean_gain, digits = 0))
-##Radar ggplot
-ggplot(plot_df) +
-  # Make custom panel grid
-  geom_hline(
-    aes(yintercept = y), 
-    data.frame(y = c(0:3) * 1000),
-    color = "lightgrey"
-  ) + 
-  # Add bars to represent the cumulative track lengths
-  # str_wrap(region, 5) wraps the text so each line has at most 5 characters
-  # (but it doesn't break long words!)
-  geom_col(
-    aes(
-      x = reorder(str_wrap(region, 5), sum_length),
-      y = sum_length,
-      fill = n
-    ),
-    position = "dodge2",
-    show.legend = TRUE,
-    alpha = .9
-  ) +  # Make it circular!
-  coord_polar()
-
-
 
 ##Radar ggplot
 
